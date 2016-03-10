@@ -13,9 +13,11 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Albert Bertram"]
   spec.email         = ["bertrama@umich.edu"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = "Add 360Link(tm) to Umlaut"
+  spec.description   = "Umlaut is a link-resolver front-end.  360Link is a Link Resolver produced by Proquest.  360Link and Proquest are probably trade marks."
+  spec.homepage      = "https://github.com/mlibrary/umlaut-three-sixty-link"
+
+  spec.licenses      = ["BSD-3-Clause"]
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.

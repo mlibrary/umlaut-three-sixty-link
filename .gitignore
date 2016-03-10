@@ -7,3 +7,7 @@
 /pkg/
 /spec/reports/
 /tmp/
+
+# We have vi users.
+*.swp
+*.swo

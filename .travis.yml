@@ -1,7 +1,10 @@
 language: ruby
 cache: bundler
+env:
+  - "BUNDLE_PATH=.bundle"
 rvm:
   - 2.2.1
   - 2.3.0
   - jruby-9.0.4.0
-  - rbx-3.5.0
+before_install:
+  - gem install bundler

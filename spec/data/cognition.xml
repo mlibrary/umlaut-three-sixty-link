@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ssopenurl:openURLResponse xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ssdiag="http://xml.serialssolutions.com/ns/diagnostics/v1.0" xmlns:ssopenurl="http://xml.serialssolutions.com/ns/openurl/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xml.serialssolutions.com/ns/openurl/v1.0 http://xml.serialssolutions.com/ns/openurl/v1.0/ssopenurl.xsd http://xml.serialssolutions.com/ns/diagnostics/v1.0 http://xml.serialssolutions.com/ns/diagnostics/v1.0/diagnostics.xsd">
+  <ssopenurl:version>1.0</ssopenurl:version>
+  <ssopenurl:results dbDate="2016-04-19">
+    <ssopenurl:result format="journal">
+      <ssopenurl:citation>
+        <dc:source>Cognition</dc:source>
+        <ssopenurl:issn type="print">0010-0277</ssopenurl:issn>
+      </ssopenurl:citation>
+      <ssopenurl:linkGroups>
+        <ssopenurl:linkGroup type="holding">
+          <ssopenurl:holdingData>
+            <ssopenurl:startDate>1972</ssopenurl:startDate>
+            <ssopenurl:providerId>PRVESC</ssopenurl:providerId>
+            <ssopenurl:providerName>Elsevier</ssopenurl:providerName>
+            <ssopenurl:databaseId>FDB</ssopenurl:databaseId>
+            <ssopenurl:databaseName>ScienceDirect (Online service)</ssopenurl:databaseName>
+            <ssopenurl:normalizedData>
+              <ssopenurl:startDate>1972-01-01</ssopenurl:startDate>
+            </ssopenurl:normalizedData>
+          </ssopenurl:holdingData>
+          <ssopenurl:url type="source">http://proxy.lib.umich.edu/login?url=http://www.sciencedirect.com</ssopenurl:url>
+          <ssopenurl:url type="journal">http://proxy.lib.umich.edu/login?url=http://www.sciencedirect.com/science/journal/00100277</ssopenurl:url>
+        </ssopenurl:linkGroup>
+        <ssopenurl:linkGroup type="holding">
+          <ssopenurl:holdingData>
+            <ssopenurl:startDate>01/01/1995</ssopenurl:startDate>
+            <ssopenurl:providerId>PRVESC</ssopenurl:providerId>
+            <ssopenurl:providerName>Elsevier</ssopenurl:providerName>
+            <ssopenurl:databaseId>BLXMC</ssopenurl:databaseId>
+            <ssopenurl:databaseName>ScienceDirect Freedom Collection</ssopenurl:databaseName>
+            <ssopenurl:normalizedData>
+              <ssopenurl:startDate>1995-01-01</ssopenurl:startDate>
+            </ssopenurl:normalizedData>
+          </ssopenurl:holdingData>
+          <ssopenurl:url type="source">http://proxy.lib.umich.edu/login?url=http://www.sciencedirect.com/</ssopenurl:url>
+          <ssopenurl:url type="journal">http://proxy.lib.umich.edu/login?url=http://www.sciencedirect.com/science/journal/00100277</ssopenurl:url>
+        </ssopenurl:linkGroup>
+      </ssopenurl:linkGroups>
+    </ssopenurl:result>
+  </ssopenurl:results>
+  <ssopenurl:echoedQuery timeStamp="2016-04-19T17:34:38">
+    <ssopenurl:library id="DL2AF5JF3E">
+      <ssopenurl:name>University of Michigan</ssopenurl:name>
+    </ssopenurl:library>
+    <ssopenurl:queryString>version=1.0&amp;sid=sersol%3ARefinerQuery&amp;rft.title=Cognition&amp;citationsubmit=Look+Up&amp;url_ver=Z39.88-2004&amp;l=DL2AF5JF3E&amp;SS_LibHash=DL2AF5JF3E&amp;rfr_id=info%3Asid%2Fsersol%3ARefinerQuery&amp;SS_ReferentFormat=JournalFormat&amp;rft.genre=article&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal</ssopenurl:queryString>
+  </ssopenurl:echoedQuery>
+</ssopenurl:openURLResponse>

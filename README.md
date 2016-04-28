@@ -1,5 +1,6 @@
 # UmlautThreeSixtyLink
 [![Build Status](https://api.travis-ci.org/mlibrary/umlaut-three-sixty-link.png?branch=master)](https://travis-ci.org/mlibrary/umlaut-three-sixty-link)
+[![Coverage Status](https://coveralls.io/repos/mlibrary/umlaut-three-sixty-link/badge.png)](https://coveralls.io/github/mlibrary/umlaut-three-sixty-link)
 
 A gem to use 360 Link's API with [Umlaut](https://github.com/team-umlaut/umlaut).
 

@@ -3,7 +3,10 @@
 
 require "umlaut-three-sixty-link/version"
 require "umlaut-three-sixty-link/client"
-require "umlaut-three-sixty-link/railtie" if defined?(Rails)
+if defined?(Rails)
+  require "umlaut-three-sixty-link/railtie"
+  require 'search-methods/three-sixty-link'
+end
 
 module UmlautThreeSixtyLink
   # Your code goes here...

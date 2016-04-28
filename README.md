@@ -1,39 +1,30 @@
 # UmlautThreeSixtyLink
 [![Build Status](https://api.travis-ci.org/mlibrary/umlaut-three-sixty-link.png?branch=master)](https://travis-ci.org/mlibrary/umlaut-three-sixty-link)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/umlaut-three-sixty-link`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+A gem to use 360 Link's API with [Umlaut](https://github.com/team-umlaut/umlaut).
 
 ## Installation
 
-Add this line to your application's Gemfile:
+1. Install umlaut in the usual way.
+1. Add `gem 'umlaut'` to your `Gemfile`.
+1. Run `bundle install`.
+1. Add a service to `config/umlaut_services.yml`.
 
-```ruby
-gem 'umlaut-three-sixty-link'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install umlaut-three-sixty-link
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+    ```yaml
+    # ...
+    default:
+        services:
+            ThreeSixtyLink:
+            type: ThreeSixtyLink
+            display_name: 360 Link
+            base_url: http://<your-libhash>.openurl.xml.serialssolutions.com/openurlxml
+            priority: 3
+    # ...
+    ```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/umlaut-three-sixty-link.
+[Bug reports and pull requests are welcome on GitHub](https://github.com/mlibrary/umlaut-three-sixty-link).
 
 Copyright (c) 2016, Regents of the University of Michigan.  
 All rights reserved. See [LICENSE.txt](LICENSE.txt) for details.

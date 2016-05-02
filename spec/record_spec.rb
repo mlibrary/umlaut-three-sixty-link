@@ -103,5 +103,21 @@ RSpec.describe UmlautThreeSixtyLink::Client::Record do
     it "gets the right issn" do
       expect(@hash[:issn]).to eql("0010-0277")
     end
+
+    it "gets the right creator" do
+      expect(@hash[:creator]).to be(nil)
+    end
+
+    it "gets the right issue" do
+      expect(@hash[:issue]).to eql('')
+    end
+
+    it "gets the right volume" do
+      expect(@hash[:volume]).to eql('')
+    end
+
+    it "gets the right range" do
+      expect(@hash[:range]).to eql('')
+    end
   end
 end

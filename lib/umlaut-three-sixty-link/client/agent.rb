@@ -17,7 +17,7 @@ module UmlautThreeSixtyLink
         )
         transport.extra_args['version'] = '1.0'
         transport.get
-        Record.from_xml(transport.response)
+        RecordList.from_xml(transport.response)
       end
 
     end

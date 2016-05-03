@@ -1,6 +1,7 @@
 require "rspec/expectations"
 require 'coveralls'
-Coveralls.wear!
+require 'simplecov'
+SimpleCov.start
 
 RSpec.configure do |config|
   # ...

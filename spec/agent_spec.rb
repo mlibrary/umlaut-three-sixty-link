@@ -18,8 +18,8 @@ RSpec.describe UmlautThreeSixtyLink::Client::Agent do
       transport_class = class_double('OpenURL::Transport').as_stubbed_const
       allow(transport_class).to receive(:new).and_return(transport_instance)
 
-      record_class = class_double('UmlautThreeSixtyLink::Client::Record').as_stubbed_const
-      allow(record_class).to receive(:from_xml).and_return(nil)
+      record_list_class = class_double('UmlautThreeSixtyLink::Client::RecordList').as_stubbed_const
+      allow(record_list_class).to receive(:from_xml).and_return(nil)
 
       expect(transport_class)
         .to receive(:new).with("BASE", "CONTEXT", {:open_timeout=>5, :read_timeout=>5})
@@ -27,7 +27,7 @@ RSpec.describe UmlautThreeSixtyLink::Client::Agent do
       expect(transport_instance).to receive(:get)
       expect(transport_instance).to receive(:response)
       
-      expect(record_class).to receive(:from_xml).with(nil)
+      expect(record_list_class).to receive(:from_xml).with(nil)
       
       @agent.handle(nil, "CONTEXT")
     end

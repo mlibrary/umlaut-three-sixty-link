@@ -5,10 +5,8 @@ RSpec.describe UmlautThreeSixtyLink::Client::Record do
 
   before do
     @xml = IO.read(File.dirname(__FILE__) + '/data/cognition.xml')
-    @record = UmlautThreeSixtyLink::Client::Record.from_xml(@xml).first
-
+    @record = UmlautThreeSixtyLink::Client::RecordList.from_xml(@xml).first
     @request = double('Request', :add_service_response => nil)
-
   end
 
   describe "#links" do

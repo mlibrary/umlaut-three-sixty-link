@@ -20,6 +20,29 @@ module UmlautThreeSixtyLink
         @links   = []
       end
 
+      def dedupe (dedupe_urls=[])
+        new_record = self.class.new
+        new_record.other = @other
+        new_record.creator = @creator
+        new_record.source = @source
+        new_record.isbn = @isbn
+        new_record.issn = @issn
+        new_record.volume = @volume
+        new_record.spage = @spage
+        new_record.title = @title
+
+        @links.each do |link|
+          new_link = link.dedupe(dedupe_urls)
+          new_record.links << new_link unless new_link.nil?
+        end
+
+        if new_record.links.length > 0
+          new_record
+        else
+          nil
+        end
+      end
+
       def to_hash
         {
           creator: creator,
@@ -105,13 +128,6 @@ module UmlautThreeSixtyLink
           send("#{name}=".to_sym, value)
         else
           @other << "#{name} => #{value}"
-        end
-      end
-
-      def self.from_xml(xml)
-        parsed = Nokogiri::XML(xml)
-        parsed.xpath('//ssopenurl:result').map do |parsed_xml|
-          Record.from_parsed_xml(parsed_xml)
         end
       end
 

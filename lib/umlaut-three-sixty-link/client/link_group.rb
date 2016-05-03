@@ -8,6 +8,17 @@ module UmlautThreeSixtyLink
         @urls     = urls     || Urls.new
       end
 
+      def dedupe(dedupe_urls=[])
+        new_link = self.class.new(@holdings)
+        new_link.urls = @urls.dedupe(dedupe_urls)
+
+        if new_link.urls.nil?
+          nil
+        else
+          new_link
+        end
+      end
+
       def dates
         if holdings.start_date? && holdings.end_date?
           " (#{holdings.start_date} - #{holdings.end_date})"

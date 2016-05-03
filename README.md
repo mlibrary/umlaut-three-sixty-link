@@ -7,7 +7,7 @@ A gem to use 360 Link's API with [Umlaut](https://github.com/team-umlaut/umlaut)
 ## Installation
 
 1. Install umlaut in the usual way.
-1. Add `gem 'umlaut'` to your `Gemfile`.
+1. Add `gem 'umlaut-three-sixty-link', github: 'mlibrary/umlaut-three-sixty-link'` to your `Gemfile`.
 1. Run `bundle install`.
 1. Add a service to `config/umlaut_services.yml`.
 

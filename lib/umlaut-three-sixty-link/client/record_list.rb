@@ -15,11 +15,11 @@ module UmlautThreeSixtyLink
         @records[index]
       end
 
-      def length()
+      def length
         @records.length
       end
 
-      def dedupe()
+      def dedupe
         new_list = []
         urls = []
         @records.each do |record|
@@ -34,7 +34,7 @@ module UmlautThreeSixtyLink
         records = parsed.xpath('//ssopenurl:result').map do |parsed_xml|
           Record.from_parsed_xml(parsed_xml)
         end
-        self.new(records)
+        new(records)
       end
     end
   end

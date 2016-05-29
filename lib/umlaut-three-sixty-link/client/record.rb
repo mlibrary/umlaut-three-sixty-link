@@ -1,26 +1,21 @@
 module UmlautThreeSixtyLink
   module Client
     class Record
-      
-      ATTRIBUTES = [
-        'creator', 'source', 'isbn',
-        'issn',    'other',  'issue',
-        'volume',  'spage',  'epage',
-        'title'
-      ]
+      ATTRIBUTES = %w(creator source isbn issn other
+                      issue volume spage epage title).freeze
 
-      SEPARATOR = ', '
+      SEPARATOR = ', '.freeze
 
-      attr_accessor :creator, :source, :isbn, :issn,
-                    :other, :issue, :volume,
-                    :spage, :epage, :links, :title
+      attr_accessor :creator, :source, :isbn,
+        :issn, :other, :issue, :volume,
+        :spage, :epage, :links, :title
 
       def initialize
-        @other   = []
-        @links   = []
+        @other = []
+        @links = []
       end
 
-      def dedupe (dedupe_urls=[])
+      def dedupe(dedupe_urls = [])
         new_record = self.class.new
         new_record.other = @other
         new_record.creator = @creator
@@ -36,66 +31,46 @@ module UmlautThreeSixtyLink
           new_record.links << new_link unless new_link.nil?
         end
 
-        if new_record.links.length > 0
-          new_record
-        else
-          nil
-        end
-      end
-
-      def to_hash
-        {
-          creator: creator,
-          source: source,
-          isbn: isbn,
-          issn: issn,
-          issue: issue.nil? ? '' : "Issue #{issue}",
-          volume: volume.nil? ? '' : "Vol. #{volume}",
-          spage: spage,
-          epage: epage,
-          range: (spage.nil? || epage.nil?) ? '' : '-',
-          other: other.join(SEPARATOR)
-        }
+        new_record unless new_record.links.empty?
       end
 
       def add_service(request, base)
         links.each do |link|
           request.add_service_response(
-            base.merge({
+            base.merge(
               display_text: display_text(:article),
-              notes: "Article-level: " + link.notes,
+              notes: 'Article-level: ' + link.notes,
               url: link.urls.article
-            })
+            )
           ) if link.urls.article
           request.add_service_response(
-            base.merge({
+            base.merge(
               display_text: display_text(:volume),
-              notes: "Volume-level: " + link.notes,
+              notes: 'Volume-level: ' + link.notes,
               url: link.urls.volume
-            })
+            )
           ) if link.urls.volume
           request.add_service_response(
-            base.merge({
+            base.merge(
               display_text: display_text(:issue),
-              notes: "Issue-level: " + link.notes,
+              notes: 'Issue-level: ' + link.notes,
               url: link.urls.issue
-            })
-          ) if link.urls.volume
+            )
+          ) if link.urls.issue
           request.add_service_response(
-            base.merge({
+            base.merge(
               display_text: display_text(:journal),
-              notes: "Journal-level: " + link.notes,
+              notes: 'Journal-level: ' + link.notes,
               url: link.urls.journal
-            })
+            )
           ) if link.urls.journal
           request.add_service_response(
-            base.merge({
+            base.merge(
               display_text: link.source,
-              notes: "Database-level: " + link.notes,
+              notes: 'Database-level: ' + link.notes,
               url: link.urls.source
-            })
+            )
           ) if link.urls.source
-
         end
       end
 
@@ -111,21 +86,12 @@ module UmlautThreeSixtyLink
           source
         when :source
           source
-        else
         end
-
-      end
-
-      def to_s
-        sprintf(
-          "%{creator}, (%{source}) %{isbn} %{issn} %{volume} %{issue} %{spage}%{range}${epage}",
-          to_hash
-        )
       end
 
       def set(name, value)
-        if has_attribute?(name)
-          send("#{name}=".to_sym, value)
+        if attribute?(name)
+          send("#{name}=", value)
         else
           @other << "#{name} => #{value}"
         end
@@ -143,8 +109,8 @@ module UmlautThreeSixtyLink
         record
       end
 
-      def has_attribute?(name)
-        self.class.has_attribute?(name)
+      def attribute?(name)
+        self.class.attribute?(name)
       end
 
       def self.attributes(input)
@@ -159,7 +125,7 @@ module UmlautThreeSixtyLink
         links
       end
 
-      def self.has_attribute?(attribute)
+      def self.attribute?(attribute)
         ATTRIBUTES.include?(attribute)
       end
     end

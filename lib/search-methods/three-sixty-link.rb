@@ -1,9 +1,9 @@
 module SearchMethods
   module ThreeSixtyLink
-
     # This is enough to prevent errors from showing on the A-Z list page.
     # The 360 Link api, as far as I can tell, does not include access to
     # their A-Z list features.
+
     def find_by_group
       [[], 0]
     end
@@ -12,11 +12,11 @@ module SearchMethods
       [[], 0]
     end
 
-    def self.fetch_urls?()
+    def self.fetch_urls?
       false
     end
 
-    def self.fetch_urls()
+    def self.fetch_urls
       []
     end
   end

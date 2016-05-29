@@ -8,15 +8,14 @@ module UmlautThreeSixtyLink
         @urls     = urls     || Urls.new
       end
 
-      def dedupe(dedupe_urls=[])
+      def dedupe(dedupe_urls = [])
         new_link = self.class.new(@holdings)
         new_link.urls = @urls.dedupe(dedupe_urls)
+        new_link
+      end
 
-        if new_link.urls.nil?
-          nil
-        else
-          new_link
-        end
+      def empty?
+        urls.empty?
       end
 
       def dates
@@ -40,7 +39,7 @@ module UmlautThreeSixtyLink
       end
 
       def self.from_parsed_xml(parsed_xml)
-        LinkGroup.new(
+        new(
           Holdings.from_parsed_xml(parsed_xml),
           Urls.from_parsed_xml(parsed_xml)
         )

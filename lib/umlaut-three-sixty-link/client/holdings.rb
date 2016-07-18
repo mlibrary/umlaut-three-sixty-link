@@ -1,10 +1,12 @@
 module UmlautThreeSixtyLink
   module Client
     class Holdings
-
-      attr_accessor :start_date, :end_date,
-        :database_name, :database_id,
-        :provider_name, :provider_id
+      attr_accessor :start_date,
+        :end_date,
+        :database_name,
+        :database_id,
+        :provider_name,
+        :provider_id
 
       def start_date?
         !(start_date.nil? || start_date.empty?)
@@ -15,7 +17,7 @@ module UmlautThreeSixtyLink
       end
 
       def self.from_parsed_xml(parsed_xml)
-        holdings = Holdings.new
+        holdings = new
         holdings.end_date      = parsed_xml.xpath('./ssopenurl:holdingData/ssopenurl:endDate').inner_text
         holdings.start_date    = parsed_xml.xpath('./ssopenurl:holdingData/ssopenurl:startDate').inner_text
         holdings.provider_id   = parsed_xml.xpath('./ssopenurl:holdingData/ssopenurl:providerId').inner_text

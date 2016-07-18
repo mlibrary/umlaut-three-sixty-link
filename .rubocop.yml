@@ -1,0 +1,22 @@
+AllCops:
+  DisplayCopNames: true
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/LineLength:
+  Max: 132
+
+Style/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Style/IndentHash:
+  EnforcedStyle: consistent
+
+Style/Documentation:
+  Enabled: false
+
+Style/FileName:
+  Exclude:
+    - lib/umlaut-three-sixty-link.rb
+    - lib/search-methods/three-sixty-link.rb

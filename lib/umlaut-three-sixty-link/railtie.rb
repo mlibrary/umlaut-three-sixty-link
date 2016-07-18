@@ -3,7 +3,7 @@ require 'umlaut-three-sixty-link'
 
 module UmlautThreeSixtyLink
   class Railtie < Rails::Railtie
-    initializer "umlaut_three_sixty_link.initialize" do |app|
+    initializer 'umlaut_three_sixty_link.initialize' do
       require File.dirname(__FILE__) + '/service'
     end
     rake_tasks do

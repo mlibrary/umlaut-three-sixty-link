@@ -29,6 +29,13 @@ module UmlautThreeSixtyLink
         RecordList.new(new_list)
       end
 
+      def add_service(request, service)
+        @records.each do |record|
+          base = { service: service, service_type_value: 'fulltext' }
+          record.add_service(request, base)
+        end
+      end
+
       def self.from_xml(xml)
         parsed = Nokogiri::XML(xml)
         records = parsed.xpath('//ssopenurl:result').map do |parsed_xml|

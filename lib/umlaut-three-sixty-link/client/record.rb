@@ -35,7 +35,20 @@ module UmlautThreeSixtyLink
       end
 
       def add_service(request, base)
+
         links.each do |link|
+          request.add_service_response(
+            base.merge(
+              service_type_value: 'fulltext_bundle',
+              headings: {
+                  article: display_text(:article),
+                  journal: display_text(:journal),
+                  source: link.source
+              },
+              notes: link.notes,
+              urls: link.urls
+            )
+          )
           request.add_service_response(
             base.merge(
               display_text: display_text(:article),

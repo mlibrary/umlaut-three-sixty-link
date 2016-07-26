@@ -34,11 +34,7 @@ class ThreeSixtyLink < Service
 
   def handle(request)
     records = @client.handle(request.referent.metadata, request.to_context_object)
-    records.each do |record|
-      base = { service: self, service_type_value: 'fulltext' }
-      record.add_service(request, base)
-    end
-
+    records.add_service(request, self)
     request.dispatched(self, true)
   end
 end

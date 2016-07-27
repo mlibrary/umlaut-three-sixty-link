@@ -41,12 +41,19 @@ module UmlautThreeSixtyLink
             base.merge(
               service_type_value: 'fulltext_bundle',
               headings: {
-                  article: display_text(:article),
-                  journal: display_text(:journal),
-                  source: link.source
+                article: display_text(:article),
+                journal: display_text(:journal),
+                source: link.source,
+                provider: link.holdings.provider_name,
+                database: link.holdings.database_name
               },
-              notes: link.notes,
-              urls: link.urls
+              notes: link.urls.notes,
+              structured_notes: link.urls.structured_notes,
+              urls: link.urls,
+              available: {
+                start: link.holdings.start_date,
+                end: link.holdings.end_date,
+              }
             )
           )
           request.add_service_response(

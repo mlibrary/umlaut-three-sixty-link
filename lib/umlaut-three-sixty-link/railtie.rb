@@ -16,6 +16,7 @@ module UmlautThreeSixtyLink
 
     initializer 'umlaut_three_sixty_link.initialize' do
       require File.dirname(__FILE__) + '/service'
+      UmlautThreeSixtyLink.load_config(Rails.root.join('config', '360link.yml'))
     end
 
     rake_tasks do

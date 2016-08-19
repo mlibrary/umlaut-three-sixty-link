@@ -142,7 +142,7 @@ module UmlautThreeSixtyLink
         input.xpath('./ssopenurl:linkGroups/ssopenurl:linkGroup').each do |link_group|
           links << LinkGroup.from_parsed_xml(link_group)
         end
-        links
+        UmlautThreeSixtyLink.sort_link_groups(links)
       end
 
       def self.attribute?(attribute)

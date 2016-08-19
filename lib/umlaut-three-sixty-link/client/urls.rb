@@ -1,7 +1,7 @@
 module UmlautThreeSixtyLink
   module Client
     class Urls
-      LEVELS = [:article, :issue, :volume, :journal, :source].freeze
+      LEVELS = [:direct_link, :article, :issue, :volume, :journal, :source].freeze
 
       attr_accessor(*LEVELS, :notes, :structured_notes)
 

@@ -1,3 +1,6 @@
+# Copyright (c) 2016, Regents of the University of Michigan.
+# All rights reserved. See LICENSE.txt for details.
+
 module UmlautThreeSixtyLink
   module Client
     class Holdings

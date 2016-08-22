@@ -1,3 +1,6 @@
+# Copyright (c) 2016, Regents of the University of Michigan.
+# All rights reserved. See LICENSE.txt for details.
+
 module SearchMethods
   module ThreeSixtyLink
     # This is enough to prevent errors from showing on the A-Z list page.

@@ -1,3 +1,5 @@
+# Copyright (c) 2016, Regents of the University of Michigan.
+# All rights reserved. See LICENSE.txt for details.
 source 'https://rubygems.org'
 
 # Specify your gem's dependencies in umlaut-three-sixty-link.gemspec

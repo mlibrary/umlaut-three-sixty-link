@@ -1,3 +1,5 @@
+# Copyright (c) 2016, Regents of the University of Michigan.
+# All rights reserved. See LICENSE.txt for details.
 class ThreeSixtyLink < Service
   required_config_params :base_url
   attr_reader :base_url

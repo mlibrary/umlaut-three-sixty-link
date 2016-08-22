@@ -28,5 +28,4 @@ RSpec.describe UmlautThreeSixtyLink::Client::RecordList do
       expect(counter).to be(1)
     end
   end
-
 end

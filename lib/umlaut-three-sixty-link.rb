@@ -13,7 +13,6 @@ end
 
 # The top-level module
 module UmlautThreeSixtyLink
-
   @preferences = {}
 
   def self.load_config(file)
@@ -22,7 +21,7 @@ module UmlautThreeSixtyLink
 
   def self.sort_link_groups(links)
     sorted = {}
-    links.sort {|a,b| weight[a.database_id] <=> weight[b.database_id]}.each do |link|
+    links.sort { |a, b| weight[a.database_id] <=> weight[b.database_id] }.each do |link|
       key = provider[link.database_id] || link.database_id
       sorted[key] ||= link
     end
@@ -36,5 +35,4 @@ module UmlautThreeSixtyLink
   def self.provider
     @preferences[:provider] || {}
   end
-
 end

@@ -16,7 +16,6 @@ module UmlautThreeSixtyLink
       end
 
       def add_service(request, base)
-
         links.each do |link|
           request.add_service_response(
             base.merge(
@@ -33,7 +32,7 @@ module UmlautThreeSixtyLink
               urls: link.urls,
               available: {
                 start: link.holdings.start_date,
-                end: link.holdings.end_date,
+                end: link.holdings.end_date
               }
             )
           )

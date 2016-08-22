@@ -20,9 +20,9 @@ module UmlautThreeSixtyLink
       end
 
       def enhance_metadata(request)
-          #request.referent.enhance_referent("title", title)
-          #request.referent.enhance_referent("au", author)
-          #request.referent.enhance_referent("date", date)
+        # request.referent.enhance_referent("title", title)
+        # request.referent.enhance_referent("au", author)
+        # request.referent.enhance_referent("date", date)
       end
 
       # :nocov:

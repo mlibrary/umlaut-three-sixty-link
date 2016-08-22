@@ -8,7 +8,7 @@ namespace :umlaut do
 
   namespace :"360link" do
     desc 'Ingest database priorities'
-    task :priorities, [:details, :order, :output] do |t, args|
+    task :priorities, [:details, :order, :output] do |_, args|
       require 'csv'
       require 'yaml'
 
@@ -27,7 +27,7 @@ namespace :umlaut do
         mapping[:provider][row[0]] = row[4]
       end
 
-      order  = CSV.read(args[:order])
+      order = CSV.read(args[:order])
       order.shift
 
       order.each do |row|

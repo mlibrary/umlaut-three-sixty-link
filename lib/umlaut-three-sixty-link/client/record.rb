@@ -36,41 +36,15 @@ module UmlautThreeSixtyLink
               }
             )
           )
-          request.add_service_response(
-            base.merge(
-              display_text: display_text(:article),
-              notes: 'Article-level: ' + link.notes,
-              url: link.urls.article
-            )
-          ) if link.urls.article
-          request.add_service_response(
-            base.merge(
-              display_text: display_text(:volume),
-              notes: 'Volume-level: ' + link.notes,
-              url: link.urls.volume
-            )
-          ) if link.urls.volume
-          request.add_service_response(
-            base.merge(
-              display_text: display_text(:issue),
-              notes: 'Issue-level: ' + link.notes,
-              url: link.urls.issue
-            )
-          ) if link.urls.issue
-          request.add_service_response(
-            base.merge(
-              display_text: display_text(:journal),
-              notes: 'Journal-level: ' + link.notes,
-              url: link.urls.journal
-            )
-          ) if link.urls.journal
-          request.add_service_response(
-            base.merge(
-              display_text: link.source,
-              notes: 'Database-level: ' + link.notes,
-              url: link.urls.source
-            )
-          ) if link.urls.source
+          Urls::LEVELS.each do |level|
+            request.add_service_response(
+              base.merge(
+                display_text: display_text(level),
+                notes: link.notes,
+                url: link.urls.send(level)
+              )
+            ) if link.urls.send(level)
+          end
         end
       end
 

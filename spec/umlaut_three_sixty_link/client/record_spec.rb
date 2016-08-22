@@ -24,23 +24,26 @@ RSpec.describe UmlautThreeSixtyLink::Client::Record do
     it 'calls request.add_service_request()' do
       arguments = [
         {
+          service_type_value: 'fulltext_bundle'
+        },
+        {
           display_text: 'Cognition',
-          notes: 'Journal-level: Elsevier / ScienceDirect (Online service) (1972 - ...)',
+          notes: 'Elsevier / ScienceDirect (Online service) (1972 - ...)',
           url: 'http://proxy.lib.umich.edu/login?url=http://www.sciencedirect.com/science/journal/00100277'
         },
         {
-          display_text: 'Elsevier / ScienceDirect (Online service)',
-          notes: 'Database-level: Elsevier / ScienceDirect (Online service) (1972 - ...)',
+          display_text: 'Cognition',
+          notes: 'Elsevier / ScienceDirect (Online service) (1972 - ...)',
           url: 'http://proxy.lib.umich.edu/login?url=http://www.sciencedirect.com'
         },
         {
           display_text: 'Cognition',
-          notes: 'Journal-level: Elsevier / ScienceDirect Freedom Collection (01/01/1995 - ...)',
+          notes: 'Elsevier / ScienceDirect Freedom Collection (01/01/1995 - ...)',
           url: 'http://proxy.lib.umich.edu/login?url=http://www.sciencedirect.com/science/journal/00100277'
         },
         {
-          display_text: 'Elsevier / ScienceDirect Freedom Collection',
-          notes: 'Database-level: Elsevier / ScienceDirect Freedom Collection (01/01/1995 - ...)',
+          display_text: 'Cognition',
+          notes: 'Elsevier / ScienceDirect Freedom Collection (01/01/1995 - ...)',
           url: 'http://proxy.lib.umich.edu/login?url=http://www.sciencedirect.com/'
         }
 

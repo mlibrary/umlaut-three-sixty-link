@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'umlaut-three-sixty-link'
 require 'umlaut-three-sixty-link/client'
 
 RSpec.describe UmlautThreeSixtyLink::Client::Holdings do

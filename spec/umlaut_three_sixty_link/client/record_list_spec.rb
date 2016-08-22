@@ -29,11 +29,4 @@ RSpec.describe UmlautThreeSixtyLink::Client::RecordList do
     end
   end
 
-  describe '#dedupe' do
-    it 'removes duplicates' do
-      deduped = record_list.dedupe
-      expect(deduped).to be_a(described_class)
-      expect(deduped[0].links.length).to be(2)
-    end
-  end
 end

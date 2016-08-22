@@ -38,6 +38,15 @@ RSpec.describe UmlautThreeSixtyLink::Client::LinkGroup do
     end
   end
 
+  describe '#empty?' do
+    it 'is true when empty' do
+      expect(lg.empty?).to be(true)
+    end
+    it 'is false when not empty' do
+      expect(link.empty?).to be(false)
+    end
+  end
+
   describe '#holdings' do
     it 'has holdings' do
       holdings = link.holdings

@@ -19,22 +19,20 @@ module UmlautThreeSixtyLink
         @records.length
       end
 
-      def dedupe
-        new_list = []
-        urls = []
-        @records.each do |record|
-          new_record = record.dedupe(urls)
-          new_list << new_record unless new_record.nil?
-        end
-        RecordList.new(new_list)
+      def enhance_metadata(request)
+          #request.referent.enhance_referent("title", title)
+          #request.referent.enhance_referent("au", author)
+          #request.referent.enhance_referent("date", date)
       end
 
+      # :nocov:
       def add_service(request, service)
         @records.each do |record|
           base = { service: service, service_type_value: 'fulltext' }
           record.add_service(request, base)
         end
       end
+      # :nocov:
 
       def self.from_xml(xml)
         parsed = Nokogiri::XML(xml)

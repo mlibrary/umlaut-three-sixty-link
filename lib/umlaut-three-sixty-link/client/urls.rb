@@ -3,10 +3,14 @@ module UmlautThreeSixtyLink
     class Urls
       LEVELS = [:direct_link, :article, :issue, :volume, :journal, :source].freeze
 
-      attr_accessor(*LEVELS, :notes, :structured_notes)
+      attr_accessor(*LEVELS, :structured_notes)
 
       def initialize
         @structured_notes = {}
+      end
+
+      def empty?
+        list.empty?
       end
 
       def notes
@@ -15,26 +19,6 @@ module UmlautThreeSixtyLink
 
       def list
         LEVELS.map { |level| send(level) }.compact
-      end
-
-      def dedupe(dedupe_urls = [])
-        new_urls = self.class.new
-
-        LEVELS.each do |level|
-          value = send(level)
-          next unless value
-          normalized = value.chomp('/')
-          unless dedupe_urls.include?(normalized)
-            new_urls.send(level.to_s + '=', value)
-            dedupe_urls << normalized
-          end
-        end
-
-        if new_urls.list.empty?
-          nil
-        else
-          new_urls
-        end
       end
 
       def self.from_parsed_xml(parsed_xml)

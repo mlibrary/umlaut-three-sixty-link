@@ -8,12 +8,6 @@ module UmlautThreeSixtyLink
         @urls     = urls     || Urls.new
       end
 
-      def dedupe(dedupe_urls = [])
-        new_link = self.class.new(@holdings)
-        new_link.urls = @urls.dedupe(dedupe_urls)
-        new_link
-      end
-
       def database_id
         @holdings.database_id
       end

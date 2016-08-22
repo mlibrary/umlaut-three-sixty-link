@@ -15,25 +15,6 @@ module UmlautThreeSixtyLink
         @links = []
       end
 
-      def dedupe(dedupe_urls = [])
-        new_record = self.class.new
-        new_record.other = @other
-        new_record.creator = @creator
-        new_record.source = @source
-        new_record.isbn = @isbn
-        new_record.issn = @issn
-        new_record.volume = @volume
-        new_record.spage = @spage
-        new_record.title = @title
-
-        @links.each do |link|
-          new_link = link.dedupe(dedupe_urls)
-          new_record.links << new_link unless new_link.nil?
-        end
-
-        new_record unless new_record.links.empty?
-      end
-
       def add_service(request, base)
 
         links.each do |link|

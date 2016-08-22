@@ -3,14 +3,19 @@
 
 require 'umlaut-three-sixty-link/version'
 require 'umlaut-three-sixty-link/client'
+
+# :nocov:
 if defined?(Rails)
   require 'umlaut-three-sixty-link/railtie'
   require 'search-methods/three-sixty-link'
 end
+# :nocov:
 
 # The top-level module
 module UmlautThreeSixtyLink
-  # Your code goes here...
+
+  @preferences = {}
+
   def self.load_config(file)
     @preferences = YAML.load_file(file)
   end

@@ -5,20 +5,42 @@ module UmlautThreeSixtyLink
   module Client
     class Record
       ATTRIBUTES = %w(creator source isbn issn other
-                      issue volume spage epage title).freeze
+                      issue volume spage epage title
+                      eisbn eissn date
+      ).freeze
 
       SEPARATOR = ', '.freeze
 
-      attr_accessor :creator, :source, :isbn,
-        :issn, :other, :issue, :volume,
-        :spage, :epage, :links, :title
+      attr_accessor *ATTRIBUTES, :links
 
       def initialize
         @other = []
         @links = []
       end
 
-      def add_service(request, base)
+      def to_h
+        h = {}
+        ATTRIBUTES.each do |a|
+          h[a] = send(a)
+        end
+        h
+      end
+
+      def link?
+        links.inject(false) { |val, link| val || !link.urls.empty? }
+      end
+
+      def add_disambiguation(request, base)
+        request.add_service_response(
+          base.merge(
+            notes: links.map { |link| link.urls.notes }.compact.uniq,
+            metadata: to_h,
+            url: 'URL PLACEHOLDER'
+          )
+        )
+      end
+
+      def add_fulltext(request, base)
         links.each do |link|
           request.add_service_response(
             base.merge(
@@ -39,7 +61,7 @@ module UmlautThreeSixtyLink
               }
             )
           )
-          Urls::LEVELS.each do |level|
+          Urls::LEVELS.keys.each do |level|
             request.add_service_response(
               base.merge(
                 display_text: display_text(level),

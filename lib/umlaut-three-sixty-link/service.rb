@@ -30,7 +30,8 @@ class ThreeSixtyLink < Service
     [
       ServiceTypeValue['fulltext'],
       ServiceTypeValue['holding'],
-      ServiceTypeValue['highlighted_link']
+      ServiceTypeValue['highlighted_link'],
+      ServiceTypeValue['disambiguation']
     ]
   end
 

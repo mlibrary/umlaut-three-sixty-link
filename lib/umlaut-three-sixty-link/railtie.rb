@@ -12,6 +12,10 @@ module UmlautThreeSixtyLink
         fulltext_bundle: {
           display_name: 'Available Online',
           display_name_plural: 'Available Online'
+        },
+        disambiguation: {
+          display_name: 'Disambiguation',
+          display_name_plural: 'Disambiguations'
         }
       )
     end

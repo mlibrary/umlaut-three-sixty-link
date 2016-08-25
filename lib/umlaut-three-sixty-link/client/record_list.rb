@@ -6,8 +6,9 @@ module UmlautThreeSixtyLink
     class RecordList
       include Enumerable
 
-      def initialize(records)
+      def initialize(records, disambiguation = false)
         @records = records
+        @disambiguation = disambiguation
       end
 
       def each(&block)
@@ -30,19 +31,33 @@ module UmlautThreeSixtyLink
 
       # :nocov:
       def add_service(request, service)
-        @records.each do |record|
-          base = { service: service, service_type_value: 'fulltext' }
-          record.add_service(request, base)
+        if disambiguation?
+          @records.each do |record|
+            base = { service: service, service_type_value: 'disambiguation' }
+            record.add_disambiguation(request, base)
+          end
+        else
+          @records.each do |record|
+            base = { service: service, service_type_value: 'fulltext' }
+            record.add_fulltext(request, base)
+          end
         end
       end
       # :nocov:
 
+      def disambiguation?
+        @disambiguation
+      end
+
       def self.from_xml(xml)
+        records_with_links = 0
         parsed = Nokogiri::XML(xml)
         records = parsed.xpath('//ssopenurl:result').map do |parsed_xml|
-          Record.from_parsed_xml(parsed_xml)
+          record = Record.from_parsed_xml(parsed_xml)
+          records_with_links = records_with_links + 1 if record.link?
+          record
         end
-        new(records)
+        new(records, records_with_links > 1)
       end
     end
   end

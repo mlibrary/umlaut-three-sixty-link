@@ -9,8 +9,21 @@ RSpec.describe UmlautThreeSixtyLink::Client::Urls do
     UmlautThreeSixtyLink::Client::Record.from_parsed_xml(result).links.first.urls
   end
 
+  let(:direct_link_urls) do
+    xml = IO.read(File.dirname(__FILE__) + '/data/direct_link.xml')
+    parsed = Nokogiri::XML(xml)
+    result = parsed.xpath('//ssopenurl:result').first
+    UmlautThreeSixtyLink::Client::Record.from_parsed_xml(result).links[1].urls
+  end
+
   let(:blank) do
     described_class.new
+  end
+
+  describe '#direct_link' do
+    it 'has direct link urls' do
+      expect(direct_link_urls.direct_link).to eq('http://search.proquest.com/docview/208897479?pq-origsite=360link')
+    end
   end
 
   describe '#notes' do

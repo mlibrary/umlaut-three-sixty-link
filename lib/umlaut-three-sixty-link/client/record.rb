@@ -6,12 +6,28 @@ module UmlautThreeSixtyLink
     class Record
       ATTRIBUTES = %w(creator source isbn issn other
                       issue volume spage epage title
-                      eisbn eissn date
+                      eisbn eissn date format doi
       ).freeze
 
       SEPARATOR = ', '.freeze
 
       attr_accessor *ATTRIBUTES, :links
+
+      def au
+        creator
+      end
+
+      def atitle
+        title if journal?
+      end
+
+      def jtitle
+        source if journal?
+      end
+
+      def journal?
+        format == 'journal'
+      end
 
       def initialize
         @other = []
@@ -46,8 +62,8 @@ module UmlautThreeSixtyLink
             base.merge(
               service_type_value: 'fulltext_bundle',
               headings: {
-                article: display_text(:article),
-                journal: display_text(:journal),
+                article: display_text('article'),
+                journal: display_text('journal'),
                 source: link.source,
                 provider: link.holdings.provider_name,
                 database: link.holdings.database_name
@@ -61,7 +77,7 @@ module UmlautThreeSixtyLink
               }
             )
           )
-          Urls::LEVELS.keys.each do |level|
+          Urls::LEVELS.each do |level|
             request.add_service_response(
               base.merge(
                 display_text: display_text(level),
@@ -73,17 +89,15 @@ module UmlautThreeSixtyLink
         end
       end
 
-      def display_text(level = :article)
+      def display_text(level = 'article')
         case level
-        when :article
+        when 'article', 'directLink'
           title || source
-        when :issue
+        when 'issue'
           "#{title || source} (#{volume}): #{issue}"
-        when :volume
+        when 'volume'
           "#{title || source} (#{volume})"
-        when :journal
-          source
-        when :source
+        when 'journal', 'source'
           source
         end
       end
@@ -98,6 +112,7 @@ module UmlautThreeSixtyLink
 
       def self.from_parsed_xml(parsed_xml)
         record = Record.new
+        record.format = format(parsed_xml)
         attributes(parsed_xml).each do |attribute|
           record.set(attribute.name, attribute.inner_text)
         end
@@ -110,6 +125,10 @@ module UmlautThreeSixtyLink
 
       def attribute?(name)
         self.class.attribute?(name)
+      end
+
+      def self.format(input)
+        input.attr('format')
       end
 
       def self.attributes(input)

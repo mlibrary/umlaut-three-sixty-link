@@ -2,9 +2,6 @@ require 'spec_helper'
 require 'umlaut-three-sixty-link/client'
 
 RSpec.describe UmlautThreeSixtyLink::Client::Record do
-  before do
-  end
-
   let(:record) do
     xml = IO.read(File.dirname(__FILE__) + '/data/cognition.xml')
     UmlautThreeSixtyLink::Client::RecordList.from_xml(xml).first
@@ -20,7 +17,7 @@ RSpec.describe UmlautThreeSixtyLink::Client::Record do
     end
   end
 
-  describe '#add_service' do
+  describe '#add_fulltext' do
     it 'calls request.add_service_request()' do
       arguments = [
         {
@@ -53,17 +50,17 @@ RSpec.describe UmlautThreeSixtyLink::Client::Record do
           .to receive(:add_service_response)
           .with(hash_including(argument))
       end
-      record.add_service(request, {})
+      record.add_fulltext(request, {})
     end
   end
 
   describe '#display_text' do
     it 'gets the right string' do
-      expect(record.display_text(:article)).to eq('Cognition')
-      expect(record.display_text(:issue)).to eq('Cognition (): ')
-      expect(record.display_text(:volume)).to eq('Cognition ()')
-      expect(record.display_text(:journal)).to eq('Cognition')
-      expect(record.display_text(:source)).to eq('Cognition')
+      expect(record.display_text('article')).to eq('Cognition')
+      expect(record.display_text('issue')).to eq('Cognition (): ')
+      expect(record.display_text('volume')).to eq('Cognition ()')
+      expect(record.display_text('journal')).to eq('Cognition')
+      expect(record.display_text('source')).to eq('Cognition')
     end
   end
 

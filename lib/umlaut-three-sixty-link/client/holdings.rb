@@ -15,6 +15,11 @@ module UmlautThreeSixtyLink
 
       attr_accessor *PATHS.keys
 
+      def initialize
+        @provider_name = ''
+        @database_name = ''
+      end
+
       def start_date?
         !(start_date.nil? || start_date.empty?)
       end

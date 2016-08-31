@@ -10,6 +10,14 @@ module UmlautThreeSixtyLink
         @read_timeout = read_timeout
       end
 
+      def get_direct_link(co)
+        if co.referent.metadata['link_model'] == 'DirectLink'
+          lg = LinkGroup.new
+          lg.urls.direct_link = co.referent.metadata['link']
+          lg
+        end
+      end
+
       def handle(_, context_object)
         transport = OpenURL::Transport.new(
           @base_url,
@@ -17,9 +25,25 @@ module UmlautThreeSixtyLink
           open_timeout: @open_timeout,
           read_timeout: @read_timeout
         )
+        direct_link = get_direct_link(context_object)
         transport.extra_args['version'] = '1.0'
         transport.get
-        RecordList.from_xml(transport.response)
+        record_list = RecordList.from_xml(transport.response)
+
+        if record_list.empty?
+          # TODO: Create an empty record, and attach the direct_link to it.
+        elsif record_list.link?
+          record_list.each do |record|
+            if record.link?
+              record.links.unshift(direct_link)
+              break
+            end
+          end
+        else
+          record_list.first.links.unshift(direct_link)
+        end
+
+        record_list
       end
     end
   end

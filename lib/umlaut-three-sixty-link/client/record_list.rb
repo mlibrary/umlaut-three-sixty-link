@@ -54,6 +54,18 @@ module UmlautThreeSixtyLink
       end
       # :nocov:
 
+      def first
+        @records.first
+      end
+
+      def empty?
+        @records.empty?
+      end
+
+      def link?
+        @records.any?(&:link?)
+      end
+
       def disambiguation?
         @disambiguation
       end

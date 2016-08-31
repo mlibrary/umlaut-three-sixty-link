@@ -30,17 +30,19 @@ module UmlautThreeSixtyLink
         transport.get
         record_list = RecordList.from_xml(transport.response)
 
-        if record_list.empty?
-          # TODO: Create an empty record, and attach the direct_link to it.
-        elsif record_list.link?
-          record_list.each do |record|
-            if record.link?
-              record.links.unshift(direct_link)
-              break
+        if direct_link
+          if record_list.empty?
+            # TODO: Create an empty record, and attach the direct_link to it.
+          elsif record_list.link?
+            record_list.each do |record|
+              if record.link?
+                record.links.unshift(direct_link)
+                break
+              end
             end
+          else
+            record_list.first.links.unshift(direct_link)
           end
-        else
-          record_list.first.links.unshift(direct_link)
         end
 
         record_list

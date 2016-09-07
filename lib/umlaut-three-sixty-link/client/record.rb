@@ -46,21 +46,30 @@ module UmlautThreeSixtyLink
         links.inject(false) { |val, link| val || !link.urls.empty? }
       end
 
+      def disambiguate
+        {source: source, isbn: isbn, issn: issn, eisbn: eisbn, eissn: eissn, creator: creator}.to_json
+      end
+
       def add_disambiguation(request, base)
+        return unless link?
+        query = request.referent.to_context_object.to_h.merge(select: record.disambiguate)
         request.add_service_response(
           base.merge(
             notes: links.map { |link| link.urls.notes }.compact.uniq,
             metadata: to_h,
-            url: 'URL PLACEHOLDER'
+            url: 'nil'
           )
         )
       end
 
       def add_fulltext(request, base)
+        metadata = request.referent.metadata
         links.each do |link|
           request.add_service_response(
             base.merge(
               service_type_value: 'fulltext_bundle',
+              format: request.referent.format,
+              genre: metadata['genre'] || metadata['type'] || 'unknown',
               headings: {
                 article: display_text('article'),
                 journal: display_text('journal'),

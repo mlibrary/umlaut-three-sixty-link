@@ -42,6 +42,10 @@ module UmlautThreeSixtyLink
         h
       end
 
+      def match?(data)
+        data == disambiguate
+      end
+
       def link?
         links.inject(false) { |val, link| val || !link.urls.empty? }
       end
@@ -52,12 +56,12 @@ module UmlautThreeSixtyLink
 
       def add_disambiguation(request, base)
         return unless link?
-        query = request.referent.to_context_object.to_h.merge(select: record.disambiguate)
+        query = request.referent.to_context_object.to_hash.merge('rft.select' => disambiguate)
         request.add_service_response(
           base.merge(
             notes: links.map { |link| link.urls.notes }.compact.uniq,
             metadata: to_h,
-            url: 'nil'
+            query: query
           )
         )
       end

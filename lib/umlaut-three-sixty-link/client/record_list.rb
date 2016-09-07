@@ -41,9 +41,15 @@ module UmlautThreeSixtyLink
       # :nocov:
       def add_service(request, service)
         if disambiguation?
-          @records.each do |record|
-            base = { service: service, service_type_value: 'disambiguation' }
-            record.add_disambiguation(request, base)
+          selected = select(request)
+          if selected
+            base = {service: service, service_type_value: 'fulltext'}
+            selected.add_fulltext(request, base)
+          else
+            @records.each do |record|
+              base = { service: service, service_type_value: 'disambiguation' }
+              record.add_disambiguation(request, base)
+            end
           end
         else
           @records.each do |record|
@@ -53,6 +59,13 @@ module UmlautThreeSixtyLink
         end
       end
       # :nocov:
+
+      def select(request)
+        criteria = request.referent.metadata['select']
+        @records.select do |record|
+          record.match?(criteria)
+        end.first
+      end
 
       def first
         @records.first

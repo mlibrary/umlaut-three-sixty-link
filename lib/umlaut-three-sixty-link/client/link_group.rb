@@ -15,6 +15,10 @@ module UmlautThreeSixtyLink
         @holdings.database_id
       end
 
+      def specificity
+        @urls.specificity
+      end
+
       def empty?
         urls.empty?
       end

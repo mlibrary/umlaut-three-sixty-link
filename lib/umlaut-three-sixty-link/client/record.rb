@@ -74,6 +74,7 @@ module UmlautThreeSixtyLink
               service_type_value: 'fulltext_bundle',
               format: request.referent.format,
               genre: metadata['genre'] || metadata['type'] || 'unknown',
+              best: link.specificity,
               headings: {
                 article: display_text('article'),
                 journal: display_text('journal'),

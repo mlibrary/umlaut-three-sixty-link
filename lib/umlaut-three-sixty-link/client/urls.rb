@@ -23,6 +23,27 @@ module UmlautThreeSixtyLink
         @structured_notes.values.uniq.join(' ')
       end
 
+      def specificity
+        case false
+        when direct_link.nil?
+          'direct_link'
+        when article.nil?
+          'article'
+        when issue.nil?
+          'issue'
+        when volume.nil?
+          'volume'
+        when journal.nil?
+          'journal'
+        else
+          'source'
+        end
+      end
+
+      def best
+        direct_link || article || issue || volume || journal || source
+      end
+
       def list
         LEVELS.map { |level| send(level) }.compact
       end

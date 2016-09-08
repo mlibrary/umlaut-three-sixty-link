@@ -14,6 +14,8 @@ module UmlautThreeSixtyLink
         if co.referent.metadata['link_model'] == 'DirectLink'
           lg = LinkGroup.new
           lg.urls.direct_link = co.referent.metadata['link']
+          lg.urls.source = co.referent.metadata['link']
+          lg.holdings.database_name = 'Link provided by Summon'
           lg
         end
       end

@@ -85,6 +85,7 @@ module UmlautThreeSixtyLink
               notes: link.urls.notes,
               structured_notes: link.urls.structured_notes,
               urls: link.urls,
+              url: link.urls.best,
               available: {
                 start: link.holdings.start_date,
                 end: link.holdings.end_date

@@ -41,14 +41,14 @@ module UmlautThreeSixtyLink
       # :nocov:
       def add_service(request, service)
         if disambiguation?
-          selected = select(request)
+          selected = disambiguate(request)
           if selected
             base = {service: service, service_type_value: 'fulltext'}
             selected.add_fulltext(request, base)
           else
-            @records.each do |record|
+            @records.each_with_index do |record, i|
               base = { service: service, service_type_value: 'disambiguation' }
-              record.add_disambiguation(request, base)
+              record.add_disambiguation(request, base, i)
             end
           end
         else
@@ -60,11 +60,13 @@ module UmlautThreeSixtyLink
       end
       # :nocov:
 
-      def select(request)
+      def disambiguate(request)
         criteria = request.referent.metadata['select']
-        @records.select do |record|
-          record.match?(criteria)
-        end.first
+        if criteria && criteria >= 0 && criteria < @records.length
+          @records[criteria.to_i]
+        else
+          nil
+        end
       end
 
       def first
@@ -96,11 +98,22 @@ module UmlautThreeSixtyLink
       def self.from_xml(xml)
         records_with_links = 0
         parsed = Nokogiri::XML(xml)
+        urls = []
         records = parsed.xpath('//ssopenurl:result').map do |parsed_xml|
           record = Record.from_parsed_xml(parsed_xml)
           records_with_links = records_with_links + 1 if record.link?
-          record
-        end
+          best = record.best_links
+          if record.link?
+            if (urls & best).empty?
+              urls = urls + best
+              record
+            else
+              nil
+            end
+          else
+            record
+          end
+        end.compact
         new(records, records_with_links > 1)
       end
     end

@@ -63,12 +63,14 @@ module UmlautThreeSixtyLink
       # :nocov:
 
       def disambiguate(request)
-        criteria = request.referent.metadata['select'].to_i
-        if criteria && criteria >= 0 && criteria < @records.length
-          @records[criteria]
-        else
-          nil
+        criteria = request.referent.metadata['select']
+        if criteria.respond_to? :to_i
+          criteria = criteria.to_i
+          if criteria >= 0 && criteria < @records.length
+            return @records[criteria]
+          end
         end
+        return nil
       end
 
       def first

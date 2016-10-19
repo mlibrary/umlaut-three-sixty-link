@@ -40,7 +40,7 @@ class ThreeSixtyLink < Service
     ActiveRecord::Base.connection_pool.with_connection do
       records.enhance_metadata(request)
     end
-    records.add_service(request, self)
-    request.dispatched(self, true)
+    status = records.add_service(request, self)
+    request.dispatched(self, status)
   end
 end

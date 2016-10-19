@@ -4,7 +4,7 @@
 module UmlautThreeSixtyLink
   module Client
     class Urls
-      LEVELS = %w(directLink article issue volume journal source).freeze
+      LEVELS = %w(directLink article issue chapter volume journal source).freeze
 
       attr_accessor(*LEVELS, :structured_notes)
 
@@ -29,6 +29,8 @@ module UmlautThreeSixtyLink
           'direct_link'
         when article.nil?
           'article'
+        when chapter.nil?
+          'chapter'
         when issue.nil?
           'issue'
         when volume.nil?
@@ -41,7 +43,7 @@ module UmlautThreeSixtyLink
       end
 
       def best
-        direct_link || article || issue || volume || journal || source
+        direct_link || article || chapter || issue || volume || journal || source
       end
 
       def list
@@ -51,7 +53,8 @@ module UmlautThreeSixtyLink
       def self.from_parsed_xml(parsed_xml)
         urls = new
         parsed_xml.xpath('./ssopenurl:url').each do |url|
-          urls.send(url.attr('type') + '=', url.inner_text)
+          attribute = url.attr('type') + '='
+          urls.send(attribute, url.inner_text) if urls.respond_to?(attribute)
         end
         parsed_xml.xpath('./ssopenurl:note').each do |note|
           type = note.attr('type').to_s.to_sym

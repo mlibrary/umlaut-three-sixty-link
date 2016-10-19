@@ -40,6 +40,7 @@ module UmlautThreeSixtyLink
 
       # :nocov:
       def add_service(request, service)
+        return false if @records.length == 0
         if disambiguation?
           selected = disambiguate(request)
           if selected
@@ -57,13 +58,14 @@ module UmlautThreeSixtyLink
             record.add_fulltext(request, base)
           end
         end
+        return true
       end
       # :nocov:
 
       def disambiguate(request)
-        criteria = request.referent.metadata['select']
+        criteria = request.referent.metadata['select'].to_i
         if criteria && criteria >= 0 && criteria < @records.length
-          @records[criteria.to_i]
+          @records[criteria]
         else
           nil
         end

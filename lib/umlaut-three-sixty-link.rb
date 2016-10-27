@@ -17,6 +17,8 @@ module UmlautThreeSixtyLink
 
   def self.load_config(file)
     @preferences = YAML.load_file(file)
+    @preferences[:weight] ||= {}
+    @preferences[:weight].default = 0
   end
 
   def self.sort_link_groups(links)
@@ -29,7 +31,7 @@ module UmlautThreeSixtyLink
   end
 
   def self.weight
-    @preferences[:weight] || Hash.new(0)
+    @preferences[:weight]
   end
 
   def self.provider

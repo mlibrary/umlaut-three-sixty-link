@@ -16,6 +16,10 @@ module UmlautThreeSixtyLink
         disambiguation: {
           display_name: 'Disambiguation',
           display_name_plural: 'Disambiguations'
+        },
+        site_message: {
+          display_name: 'Site Message',
+          display_name_plural: 'Site Messages',
         }
       )
     end

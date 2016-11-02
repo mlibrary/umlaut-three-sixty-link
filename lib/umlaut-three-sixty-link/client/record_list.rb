@@ -43,19 +43,19 @@ module UmlautThreeSixtyLink
         if @records.length == 0
           context = request.referent.to_context_object.to_hash
           ids = context['rft_id'] || []
-          if ids.any? { |id| id.start_with('info:pmid') }
+          if ids.any? { |id| id.start_with?('info:pmid') }
             request.add_service_response(
               service: service,
               service_type_value: 'site_message',
               type: 'warning',
-              message: 'mgetit.message.pubmed'
+              message: 'umlaut.message.pubmed_unavailable'
             )
-          elsif ids.any { |id| id.start_with('info:doi') }
+          elsif ids.any { |id| id.start_with?('info:doi') }
             request.add_service_response(
               service: service,
               service_type_value: 'site_message',
               type: 'warning',
-              message: 'mgetit.message.doi'
+              message: 'umlaut.message.doi_unavailable'
             )
           end
           return false

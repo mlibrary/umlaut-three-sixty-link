@@ -31,6 +31,7 @@ module UmlautThreeSixtyLink
       end
 
       def enhance_metadata(request)
+        return if disambiguation?
         rft = request.referent
         ATTRIBUTES.each do |attribute|
           value = send(attribute)
@@ -83,7 +84,7 @@ module UmlautThreeSixtyLink
 
       def disambiguate(request)
         criteria = request.referent.metadata['select']
-        if criteria.respond_to? :to_i
+        if criteria && criteria.respond_to?(:to_i)
           criteria = criteria.to_i
           if criteria >= 0 && criteria < @records.length
             return @records[criteria]

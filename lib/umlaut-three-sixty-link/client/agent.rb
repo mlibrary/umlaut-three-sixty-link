@@ -20,7 +20,8 @@ module UmlautThreeSixtyLink
         end
       end
 
-      def handle(_, context_object)
+      def handle(request)
+        context_object = request.to_context_object
         transport = OpenURL::Transport.new(
           @base_url,
           context_object,
@@ -29,8 +30,12 @@ module UmlautThreeSixtyLink
         )
         direct_link = get_direct_link(context_object)
         transport.extra_args['version'] = '1.0'
-        transport.get
-        record_list = RecordList.from_xml(transport.response)
+        begin
+          transport.get
+          record_list = RecordList.from_xml(transport.response)
+        rescue Net::ReadTimeout, Errno::ECONNREFUSED => e
+          record_list = FailedRecordList.new(e)
+        end
 
         if direct_link
           if record_list.empty?

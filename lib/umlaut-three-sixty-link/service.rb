@@ -37,7 +37,7 @@ class ThreeSixtyLink < Service
   end
 
   def handle(request)
-    records = @client.handle(request.referent.metadata, request.to_context_object)
+    records = @client.handle(request)
     ActiveRecord::Base.connection_pool.with_connection do
       records.enhance_metadata(request)
     end

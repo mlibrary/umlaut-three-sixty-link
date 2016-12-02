@@ -7,6 +7,7 @@ require 'umlaut-three-sixty-link/client/holdings'
 require 'umlaut-three-sixty-link/client/link_group'
 require 'umlaut-three-sixty-link/client/record'
 require 'umlaut-three-sixty-link/client/record_list'
+require 'umlaut-three-sixty-link/client/failed_record_list'
 require 'umlaut-three-sixty-link/client/agent'
 
 module UmlautThreeSixtyLink

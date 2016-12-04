@@ -125,10 +125,10 @@ module UmlautThreeSixtyLink
         urls = []
         records = parsed.xpath('//ssopenurl:result').map do |parsed_xml|
           record = Record.from_parsed_xml(parsed_xml)
-          records_with_links = records_with_links + 1 if record.link?
           best = record.best_links
           if record.link?
             if (urls & best).empty?
+              records_with_links = records_with_links + 1 if record.link?
               urls = urls + best
               record
             else

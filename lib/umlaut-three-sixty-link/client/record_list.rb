@@ -6,7 +6,7 @@ module UmlautThreeSixtyLink
     class RecordList
       include Enumerable
 
-      ATTRIBUTES = %w(atitle au date issn eissn volume issue doi jtitle spage epage)
+      ATTRIBUTES = %w(btitle atitle au date issn eissn volume issue doi jtitle spage epage)
 
       attr_accessor *ATTRIBUTES
 
@@ -34,8 +34,10 @@ module UmlautThreeSixtyLink
         return if disambiguation?
         rft = request.referent
         ATTRIBUTES.each do |attribute|
-          value = send(attribute)
-          rft.enhance_referent(attribute, value) if value
+          if rft.metadata[attribute].nil? || rft.metadata[attribute].empty?
+            value = send(attribute)
+            rft.enhance_referent(attribute, value) if value
+          end
         end
       end
 

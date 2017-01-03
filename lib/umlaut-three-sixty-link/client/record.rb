@@ -18,11 +18,19 @@ module UmlautThreeSixtyLink
       end
 
       def atitle
-        title if journal?
+        title if journal? || book?
       end
 
       def jtitle
         source if journal?
+      end
+
+      def btitle
+        source if book?
+      end
+
+      def book?
+        format == 'book'
       end
 
       def journal?

@@ -12,6 +12,7 @@ namespace :umlaut do
     desc 'Ingest database priorities'
     task :priorities, [:details, :order, :output] do |_, args|
       require 'csv'
+      require 'simple_xlsx_reader'
       require 'yaml'
 
       mapping = {
@@ -19,7 +20,11 @@ namespace :umlaut do
         provider: {}
       }
 
-      details = CSV.read(args[:details])
+      if args[:details].match(/\.xlsx$/)
+        details = SimpleXlsxReader.open(args[:details]).sheets.first.rows
+      elsif args[:details].match(/\.csv$/)
+        details = CSV.read(args[:details])
+      end
       details.shift
       names_to_codes = {}
       details.each do |row|
@@ -29,7 +34,11 @@ namespace :umlaut do
         mapping[:provider][row[0]] = row[4]
       end
 
-      order = CSV.read(args[:order])
+      if args[:order].match(/\.xlsx$/)
+        order = SimpleXlsxReader.open(args[:order]).sheets.first.rows
+      elsif args[:order].match(/\.csv$/)
+        order = CSV.read(args[:order])
+      end
       order.shift
 
       order.each do |row|

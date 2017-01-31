@@ -36,6 +36,7 @@ EOF
 
   spec.add_dependency 'nokogiri'
   spec.add_dependency 'openurl'
+  spec.add_dependency 'simple_xlsx_reader'
   spec.add_development_dependency 'bundler', '~> 1.11'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec'

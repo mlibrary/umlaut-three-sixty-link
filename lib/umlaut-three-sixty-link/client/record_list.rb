@@ -129,7 +129,7 @@ module UmlautThreeSixtyLink
           record = Record.from_parsed_xml(parsed_xml)
           best = record.best_links
           if record.link?
-            if (urls & best).empty?
+            unless (best - urls).empty?
               records_with_links = records_with_links + 1 if record.link?
               urls = urls + best
               record

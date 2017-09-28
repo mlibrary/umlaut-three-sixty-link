@@ -53,7 +53,7 @@ module UmlautThreeSixtyLink
               type: 'warning',
               message: 'umlaut.message.pubmed_unavailable'
             )
-          elsif ids.any { |id| id.start_with?('info:doi') }
+          elsif ids.any? { |id| id.start_with?('info:doi') }
             request.add_service_response(
               service: service,
               service_type_value: 'site_message',

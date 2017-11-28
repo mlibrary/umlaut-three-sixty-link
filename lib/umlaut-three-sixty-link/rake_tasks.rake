@@ -23,7 +23,7 @@ namespace :umlaut do
       if args[:details].match(/\.xlsx$/)
         details = SimpleXlsxReader.open(args[:details]).sheets.first.rows
       elsif args[:details].match(/\.csv$/)
-        details = CSV.read(args[:details])
+        details = CSV.read(args[:details], encoding: 'binary:UTF-8')
       end
       details.shift
       names_to_codes = {}
@@ -37,7 +37,7 @@ namespace :umlaut do
       if args[:order].match(/\.xlsx$/)
         order = SimpleXlsxReader.open(args[:order]).sheets.first.rows
       elsif args[:order].match(/\.csv$/)
-        order = CSV.read(args[:order])
+        order = CSV.read(args[:order], encoding: 'binary:UTF-8')
       end
       order.shift
 

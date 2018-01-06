@@ -3,6 +3,7 @@
 
 module UmlautThreeSixtyLink
   module Client
+    # Encapsulate the user-agent to query 360Link.
     class Agent
       def initialize(base_url, open_timeout, read_timeout)
         @base_url     = base_url

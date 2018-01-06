@@ -2,11 +2,10 @@
 # All rights reserved. See LICENSE.txt for details.
 
 module SearchMethods
+  # This is enough to prevent errors from showing on the A-Z list page.
+  # The 360 Link api, as far as I can tell, does not include access to
+  # their A-Z list features.
   module ThreeSixtyLink
-    # This is enough to prevent errors from showing on the A-Z list page.
-    # The 360 Link api, as far as I can tell, does not include access to
-    # their A-Z list features.
-
     def find_by_group
       [[], 0]
     end

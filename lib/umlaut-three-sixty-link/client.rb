@@ -11,6 +11,7 @@ require 'umlaut-three-sixty-link/client/failed_record_list'
 require 'umlaut-three-sixty-link/client/agent'
 
 module UmlautThreeSixtyLink
+  # For classes used to talk to and reason about responses from 360Link
   module Client
   end
 end

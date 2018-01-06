@@ -3,6 +3,8 @@
 
 module UmlautThreeSixtyLink
   module Client
+    # A null-record-list class that responds to `#enhance_metadata` and
+    # `#add_service` appropriately.
     class FailedRecordList
       def initialize(exception)
         @exception = exception

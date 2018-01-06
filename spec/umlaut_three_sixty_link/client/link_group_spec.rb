@@ -2,9 +2,6 @@ require 'spec_helper'
 require 'umlaut-three-sixty-link/client'
 
 RSpec.describe UmlautThreeSixtyLink::Client::LinkGroup do
-  before do
-  end
-
   let(:link) do
     xml = IO.read(File.dirname(__FILE__) + '/data/cognition.xml')
     parsed = Nokogiri::XML(xml)

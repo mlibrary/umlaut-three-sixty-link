@@ -3,6 +3,7 @@
 
 module UmlautThreeSixtyLink
   module Client
+    # Represents the ssopenurl:linkGroup xml provided by 360Link.
     class LinkGroup
       attr_accessor :holdings, :urls
 

@@ -3,6 +3,7 @@
 
 module UmlautThreeSixtyLink
   module Client
+    # Represents the ssopenurl:holdingData xml element provided by 360Link.
     class Holdings
       PATHS = {
         end_date: './ssopenurl:holdingData/ssopenurl:endDate',

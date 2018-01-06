@@ -3,6 +3,7 @@
 
 module UmlautThreeSixtyLink
   module Client
+    # Represent a list of the ssopenurl:result elements from the xml provided by 360Link.
     class RecordList
       include Enumerable
 

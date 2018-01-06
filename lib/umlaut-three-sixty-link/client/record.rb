@@ -3,6 +3,7 @@
 
 module UmlautThreeSixtyLink
   module Client
+    # Represents the ssopenurl:result element from xml provided by 360Link.
     class Record
       ATTRIBUTES = %w(creator source isbn issn other
                       issue volume spage epage title
@@ -47,11 +48,11 @@ module UmlautThreeSixtyLink
       end
 
       def to_h
-        h = {}
-        ATTRIBUTES.each do |a|
-          h[a] = send(a)
+        new_hash = {}
+        ATTRIBUTES.each do |attribute|
+          new_hash[attribute] = send(attribute)
         end
-        h
+        new_hash
       end
 
       def match?(data)

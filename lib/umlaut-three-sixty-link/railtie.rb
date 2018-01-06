@@ -5,6 +5,10 @@ require 'rails'
 require 'umlaut-three-sixty-link'
 
 module UmlautThreeSixtyLink
+  # A railtie to:
+  #   1. Register new service types
+  #   2. Load the 360link.yml config
+  #   3. Add rake tasks for creating the 360link configuration.
   class Railtie < Rails::Railtie
     initializer 'umlaut.preload' do
       require 'service_type_value'

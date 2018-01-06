@@ -13,12 +13,8 @@ end
 
 # The top-level module
 module UmlautThreeSixtyLink
-  @preferences = {}
-
   def self.load_config(file)
     @preferences = YAML.load_file(file)
-    @preferences[:weight] ||= {}
-    @preferences[:weight].default = 0
   end
 
   def self.sort_link_groups(links)
@@ -31,10 +27,15 @@ module UmlautThreeSixtyLink
   end
 
   def self.weight
-    @preferences[:weight]
+    preferences[:weight] ||= Hash.new(0)
   end
 
   def self.provider
-    @preferences[:provider] || {}
+    preferences[:provider] || {}
   end
+
+  def self.preferences
+    @preferences ||= {}
+  end
+
 end

@@ -3,11 +3,11 @@
 
 module UmlautThreeSixtyLink
   module Client
+    # Represents the ssopenurl:urls from xml from 360Link.
     class Urls
       LEVELS = %w(directLink article issue chapter volume journal source).freeze
 
       attr_accessor(*LEVELS, :structured_notes)
-
       alias_method :direct_link, :directLink
       alias_method :direct_link=, :directLink=
 
@@ -58,8 +58,7 @@ module UmlautThreeSixtyLink
         end
         parsed_xml.xpath('./ssopenurl:note').each do |note|
           type = note.attr('type').to_s.to_sym
-          urls.structured_notes[type] ||= []
-          urls.structured_notes[type] << note.inner_text.to_s
+          (urls.structured_notes[type] ||= []) << note.inner_text.to_s
         end
         urls
       end

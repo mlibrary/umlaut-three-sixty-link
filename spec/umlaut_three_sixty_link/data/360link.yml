@@ -1,3 +1,17 @@
 ---
-:weight: Weight
-:provider: Provider
+# :weight maps 360Link's internal database IDs to a priority.
+# Higher weight means lower on the list.
+:weight:
+  DCD: 1
+  7FN: 2
+  FXG: 3
+  TRM: 4
+# :provider maps database IDs to provider IDs.
+# I'm not sure if we still use these, it seems like a backwards mapping given
+# that the provider ID doesn't always appear as a weight.
+:provider:
+  DCD: PRVBGY
+  7FN: PRVBGY
+  FXG: PRVACK
+  TRM: PRVSPB
+  

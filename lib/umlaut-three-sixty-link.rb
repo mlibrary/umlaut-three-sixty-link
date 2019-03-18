@@ -13,13 +13,17 @@ end
 
 # The top-level module
 module UmlautThreeSixtyLink
+  DEFAULT_WEIGHT = 1000000
+
   def self.load_config(file)
     @preferences = YAML.load_file(file)
   end
 
   def self.sort_link_groups(links)
     sorted = {}
-    links.sort { |a, b| weight[a.database_id] <=> weight[b.database_id] }.each do |link|
+    links.sort_by do |link|
+      weight[link.database_id] || DEFAULT_WEIGHT
+    end.each do |link|
       key = provider[link.database_id] || link.database_id
       sorted[key] ||= link
     end
@@ -27,7 +31,7 @@ module UmlautThreeSixtyLink
   end
 
   def self.weight
-    preferences[:weight] ||= Hash.new(0)
+    preferences[:weight] ||= Hash.new(DEFAULT_WEIGHT)
   end
 
   def self.provider
